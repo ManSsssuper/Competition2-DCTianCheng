@@ -1,2 +1,43 @@
 1、有一些属性的属性值是有限少数类：可以提取一类特征：羊毛党和普通用户没有共存的属性值，即该用户是否属于该属性值
 2、关于UID样本数量
+operation表：
+    简单特征：
+        1、UID对应mode类别数
+        2、UID对应os类别数
+        3、UID对应geo_code类别数
+        
+        1、device_code1、2、3对应UID量
+        2、mac1、2对应UID量
+        
+    规则特征：
+        1、UID是否属于mode羊毛党没有的类别
+        2、UID是否属于mode普通用户没有的类别
+        3、UID os类别是否为5
+        4、UID是否属于7.0.0 6.6.3 6.5.0
+        5、UID是否device2对应IPHONE
+        
+存在问题：
+1、某个用户的mode各类型占比是否和其是羊毛党有关，可以看一下羊毛党用户操作最频繁的mode（最多次数的mode类型）。这个问题同样存在于所有的离散特征当中，应该查看某一UID岁对应某一离散特征值最多的那一个值是否与标记有关：比如这一类特征：（UID对应离散特征特征值众数，因为用户不一定和离散特征值一一对应！！！！！）
+2、day未利用
+3、time未利用
+4、如何利用离散字段某一UID对应离散字段数值个数分布不一致的特征
+5、客户端应该进一步分析
+
+特征一代：
+operation表：
+    离散字段特征：
+        UID对应mode、success、os、version、device1、device2、geo_code众数值、种类数量
+    连续字段特征：
+        UID对应device_code1、2、3、mac1、2、wifi、ip1、ip2、ip1_sub、ip2_sub种类数
+        device_code1、2、3、mac1、2、wifi、ip1、ip2、ip1_sub、ip2_sub的对应UID的数量
+        device_code1、2、3、mac1、2、wifi、ip1、ip2、ip1_sub、ip2_sub羊毛党占比
+transaction表：
+    离散字段特征：
+        UID对应channel、day、time、amt_src1、amt_src2、merchant、code1、code2、trans_type1、trans_type2、device1、device2、geo_code、market_code、market_type众数、种类数量
+    连续字段特征：
+        UID对应ip1、ip1_sub、acc_id1、acc_id2、acc_id3、device_code1、2、3、mac1种类数
+        ip1、ip1_sub、acc_id1、acc_id2、acc_id3、device_code1、2、3、mac1对应UID数量
+        ip1、ip1_sub、acc_id1、acc_id2、acc_id3、device_code1、2、3、mac1对应羊毛党占比
+        UID对应trans_amt的均值、众数、中位数
+        UID对应bal的均值、众数、中位数
+        对于测试集当中 

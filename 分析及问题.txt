@@ -1,0 +1,35 @@
+原始数据分析：
+    operation表：
+        离散字段：
+            day
+            mode
+            success
+            time
+            os
+            version
+            device1、device2
+            geo_code
+        1v1字段：
+            device_code1、2、3
+            mac1、2
+            wifi
+            ip1、ip2
+            ip1_sub、ip2_sub
+    transaction表：
+        离散字段：
+            channel
+            day
+            time
+            amt_src1、amt_src2
+            merchant、code1、code2
+            trans_type1、trans_type2
+            device1、device2
+            geo_code
+            market_code、market_type
+            
+        连续字段：
+            trans_amt、bal
+        1v1字段：
+            ip1、ip1_sub
+            acc_id1、acc_id2、acc_id3
+            device_code1、2、3、mac1
