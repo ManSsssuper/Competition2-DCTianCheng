@@ -1,0 +1,41 @@
+######################################################################################################################
+operation表
+	1、UID对应mode,success,os,version:cross_type
+	2.1、UID对应day、time、mode、success、os、version、device1、device2、geo_code种类数
+	2.2、UID对应device_code1、2、3、mac1、2、wifi、ip1、ip2、ip1_sub、ip2_sub种类数
+	3.1、UID的device_code1、2、3、mac1、2、wifi、ip1、ip2、ip1_sub、ip2_sub对应的用户数量之和、最大值、最小值（因为一个UID可能对应多个连续字段）
+	3.2、UID的device_code1、2、3、mac1、2、wifi、ip1、ip2、ip1_sub、ip2_sub对应的用户羊毛党概率占比均值、最大值、最小值
+	4、UID对应样本数
+######################################################################################################################
+未处理问题：
+	geocode、day、time、device2没有进一步分析
+	device_code1、device_code2、device_code3、ip1、ip2、ip1_sub、ip2_sub是不是应该合起来	
+	没有加规则特征
+	没有利用空值这个属性
+##################################################################################################################
+transaction表
+	1、UID对应channel、amt_src1、trans_type1、amt_src2、trans_type2、market_type：cross_type
+	2.1、UID对应channel,day,time,amt_src1,amt_src2,merchant,code1,code2,trans_type1,trans_type2,device1,device2,geo_code,market_code,market_type种类数
+	2.2、UID对应ip1、ip1_sub、acc_id1、acc_id2、acc_id3、device_code1、2、3、mac1数
+	3.1、UID对应ip1、ip1_sub、acc_id1、acc_id2、acc_id3、device_code1、2、3、mac1对应的用户数量之和、最大值、最小值（因为一个UID可能对应多个连续字段）
+	3.2、UID对应device_code1、2、3、mac1、2、wifi、ip1、ip2、ip1_sub、ip2_sub对应的用户羊毛党概率占比均值、最大值、最小值
+	4、UID对应样本数 
+	5、UID对应trans_amt、bal的平均值、最大值、最小值
+	6、divice_code1、2，device1、mac1、geo_code缺失值，羊毛党明显偏高羊毛党：空值数量或者是否包含空值
+		ip1,ip1_sub,device2也有20%偏高
+   
+    对于那些后验特征，如果测试集中出现了不在训练集中的数据，用与其相同的用户数量的数据的均值填充
+###################################################################################################################
+未处理问题：
+	geocode、day、time、device2没有进一步分析
+	没有分析acc_id1、2、3之间的关系
+	没有分析金钱和操作类型的关系
+	看到金钱最低都是102，看一下102和活动之前的时间关系，分析一下羊毛党第一天充值
+	没有加规则特征
+	对于那几个概率特征，是否可以用其他方法，比如概率采用用户数量相同的所有值的均值代替
+	需要分析一下，是否与数量有关系
+	需要分析，缺失率是否和是否为羊毛党有关系
+############################################################################################################   
+综合问题：
+没有考虑操作和交易表之间的联系
+在统计金钱时，是否应该根据转账类型（是提现还是充值来分类钱，并对金钱进行统计）
